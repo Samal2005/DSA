@@ -1,49 +1,48 @@
 class Solution {
-public:
-    
+public:  
     int orangesRotting(vector<vector<int>>& grid) {
-        int n=grid.size();
-          int m=grid[0].size();
-          int fr=0;
+        int time=0;
+        int n=grid.size();//rows
+        int m=grid[0].size();//columns
         queue<pair<int,int>> q;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(grid[i][j]==1)fr++;
-                else if(grid[i][j]==2)q.push({i,j});
+        int fresh=0;
+        for (int i=0;i<n;i++){//rows
+            for(int j=0;j<m;j++){//columns
+                if (grid[i][j]==1) fresh++;
+                else if (grid[i][j]==2) q.push({i,j});          
             }
         }
-        int time=0;
-        if(fr==0)return 0;
-
-      
+        if (fresh==0 && q.empty()){
+            return 0;
+        }
+        vector<int> nc={1,0,-1,0};
+        vector<int> nr={0,-1,0,1};
         while(!q.empty()){
-       int sz=q.size();
-        for(int j=0;j<sz;j++){
-             auto f=q.front();
-        q.pop();
-      
-        int r=f.first;
-        int c=f.second;
-        int dr[]={0,1,0,-1};
-        int dc[]={1,0,-1,0};
-        for(int i=0;i<4;i++){
-            int nr=r+dr[i];
-            int nc=c+dc[i];
-            if(nr>=0 && nr<n && nc<m && nc>=0 && grid[nr][nc]==1){
-                grid[nr][nc]=2;
-                q.push({nr,nc});
-                fr--;
+            int s=q.size();
+            
+            for(int i=0;i<s;i++){
+                auto node=q.front();
+                q.pop();
+            for(int j=0;j<4;j++){
+                int dr=node.first +nr[j];
+                int dc=node.second +nc[j];
+                if (dr<n && dc<m && dr>=0 && dc>=0 && grid[dr][dc]==1){
+                    grid[dr][dc]=2;
+                    q.push({dr,dc});
+                    fresh--;
+                }
             }
             
         }
-        
-        }
         time++;
-        }  
-        if(fr>0)return -1;
-        else {
+
+        }
+        if (fresh!=0){
+            return -1;
+        }
+        else{
             return time-1;
         }
-
     }
+
 };
