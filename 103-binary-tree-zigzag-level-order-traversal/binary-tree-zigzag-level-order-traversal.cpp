@@ -15,7 +15,7 @@ public:
         queue<TreeNode*>q;
 
         q.push(root);
-        bool k=false;
+        bool k=true;
          vector<vector<int>> a;
          if(!root)return a;
 
@@ -37,7 +37,7 @@ public:
             }
 
             }
-            if(!k){
+            if(k){
                 a.push_back(ans);
                 k=!k;
             }
