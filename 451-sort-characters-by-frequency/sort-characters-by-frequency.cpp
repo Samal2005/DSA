@@ -12,9 +12,9 @@ public:
         sort(v.rbegin(),v.rend());
         string t="";
         for(auto i:v){
-            int k=i.first;
-            while(k--){
+            while(i.first!=0){
                 t+=i.second;
+                i.first--;
             }
 
         
