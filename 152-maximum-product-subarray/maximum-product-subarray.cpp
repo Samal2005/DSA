@@ -3,7 +3,7 @@ public:
     int maxProduct(vector<int>& nums) {
         int p=1;
         int ans=0;
-        if(nums.size()==1 && nums[0]==-2)return -2;
+        if(nums.size()==1)return nums[0];
         for(auto it:nums){
                 p=p*it;
                  ans=max(ans,p);
