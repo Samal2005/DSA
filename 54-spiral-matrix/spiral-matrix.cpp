@@ -1,39 +1,35 @@
 class Solution {
 public:
-    vector<int> spiralOrder(vector<vector<int>>& mt) {
-        vector<int> ans;
-        int n=mt.size();
-        int m= mt[0].size();
-        int t=0;
-        int b=n-1;
+    vector<int> spiralOrder(vector<vector<int>>& nums) {
+        vector<int> v;
+        int m=nums.size();
+        int n=nums[0].size();
         int l=0;
-        int r=m-1;
+        int t=0;
+        int r=n-1;
+        int b=m-1;
         while(t<=b && l<=r){
             for(int i=l;i<=r;i++){
-                ans.push_back(mt[t][i]);
+                v.push_back(nums[t][i]);
             }
             t++;
-             for(int i=t;i<=b;i++){
-                ans.push_back(mt[i][r]);
+            for(int i=t;i<=b;i++){
+                v.push_back(nums[i][r]);
             }
             r--;
             if(t<=b){
-
-                 for(int i=r;i>=l;i--){
-                ans.push_back(mt[b][i]);
-            }
-            b--;
-
+                for(int i=r;i>=l;i--){
+                    v.push_back(nums[b][i]);
+                }
+                b--;
             }
             if(l<=r){
-            
-             for(int i=b;i>=t;i--){
-                ans.push_back(mt[i][l]);
+                for(int i=b;i>=t;i--){
+                    v.push_back(nums[i][l]);
+                }
+                l++;
             }
-            l++;
-        }
-        }
-      return ans;
-        
-    }
+        }           
+return v;
+        }        
 };
